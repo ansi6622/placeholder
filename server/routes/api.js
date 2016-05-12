@@ -5,5 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.json({ title: 'Express' });
 });
+router.post('/signup', function(req, res, next) {
+  res.json({ title: 'respond plzzz' });
+});
 
 module.exports = router;
