@@ -11,6 +11,9 @@ bower init
 bower install --save angular angular-route
 
 add .env to gitignore
+√√ 'option + v' √√
+Grab jeffs readme
+
 
 require knex in the routes file to make queries
 # Beer: beer-bonuses Install:
