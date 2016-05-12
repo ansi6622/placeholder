@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('knex');
+var knex = require('../db');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json({ title: 'Express' });
 });
+
+
 router.post('/signup', function(req, res, next) {
   const errors = []
 
@@ -16,6 +18,16 @@ router.post('/signup', function(req, res, next) {
       res.status(422).json({
         errors: errors
       })
+    }
+    else {
+      knex('users')
+            .whereRaw('lower(email) = ?', req.body.email.toLowerCase())
+            .count()
+            .first()
+            .then(function(count){
+
+              res.json({secret: "stuff", count: count})
+            })
     }
 });
 
