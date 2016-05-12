@@ -4,12 +4,16 @@ const knex = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.json({ title: 'Express' });
+router.get('/me', function(req, res, next) {
+
+console.log(req.headers.authorization);
+
+  res.status(403).json({ error: 'No Token' });
 });
 
 
 router.post('/signup', function(req, res, next) {
+  console.log("req like please show up");
   const errors = []
 
     if (!req.body.email || !req.body.email.trim()) errors.push("Email can't be blank");
