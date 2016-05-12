@@ -1,4 +1,6 @@
-terminal commands in order
+Server side is great!!!! Angular side is basic less robust and follows very little of the john papa conventions
+
+#terminal commands in order
 express --git beer-bonuses
 npm install --save dotenv pg knex
 npm install --save cors
@@ -10,6 +12,24 @@ knex migtate:latest
 bower init
 bower install --save angular angular-route
 
+#create Ang App
+ng-app/module
+two routes
+html5mode
+express wildcard routes
+ maybe layout
+home controllwe/template
+ show current user name
+signup controller/ template
+ form/on submit
+ http call
+  store token
+  redirect home page
+ handles eroor
+  show error
+
+
+#stuff
 add .env to gitignore
 √√ 'option + v' √√
 Grab jeffs readme
