@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "authors": [
+    "Anthony Simpson <ansi6622@colorado.edu>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "skeleton": "^2.0.4"
+  }
+}
