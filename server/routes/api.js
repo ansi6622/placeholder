@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json({ title: 'Express' });
@@ -37,7 +38,8 @@ router.post('/signup', function(req, res, next) {
                 .returning('*')
                 .then(function(users) {
                   const user = users[0];
-                  res.json({name: user.name, email: user.email, id: user.id})
+                  const token = jwt.sign({ id: user.id}, process.env.JWT_SECRET);
+                  res.json({name: user.name, email: user.email, id: user.id, token: token})
                 })
               }
               else {
