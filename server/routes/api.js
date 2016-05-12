@@ -28,7 +28,6 @@ if(req.headers.authorization){
 
 
 router.post('/signup', function(req, res, next) {
-  console.log("req like please show up");
   const errors = []
 
     if (!req.body.email || !req.body.email.trim()) errors.push("Email can't be blank");
@@ -58,7 +57,13 @@ router.post('/signup', function(req, res, next) {
                 .then(function(users) {
                   const user = users[0];
                   const token = jwt.sign({ id: user.id}, process.env.JWT_SECRET);
-                  res.json({name: user.name, email: user.email, id: user.id, token: token})
+                  console.log("req like please RES>JSON show up/user", user, "token", token);
+                  res.json({
+                    name: user.name,
+                    email: user.email,
+                    id: user.id,
+                    token: token
+                  })
                 })
               }
               else {
