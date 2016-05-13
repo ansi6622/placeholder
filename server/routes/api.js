@@ -5,25 +5,38 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 /* GET home page. */
 router.get('/me', function(req, res, next) {
-console.log(req.headers.authorization);
+  console.log('toplevelminus two', req.headers.authorization);
 if(req.headers.authorization){
-  const token = req.headers.authorization.split(' ')[1];
-  const payload = jwt.verify(token, process.env.JWT_SECRET);
-  knex('users').where({id: payload.id}).first().then(function(user){
-    if(user){
-      res.json({id: user.id, name: user.name})
-    }
-    else {
-      res.status(403).json({
-        error: "Invalid Id"
+  console.log(req.headers.authorization);
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+      knex('users').where({id: payload.id}).first().then(function(user){
+        if(user.id && user.name){
+          res.json({id: user.id, name: user.name});
+        }
+        else if(user){
+          res.status(404).json({
+            error: "fo0fo cuz is all so weird"
+          })
+        }
+        else {
+          res.status(403).json({
+            error: "Invalid Id"
+          })
+        }
       })
+  } catch (e) {
+      console.log("this is where it explodes", e);
+      res.status(404).json({
+        error: "we got a jwt but it no verify cuz fake/wrong"
+      });
     }
-  })
-} else {
-  res.status(403).json({ error: 'No Token' });
-
+  }
+ else {
+  console.log("do you appear4", req.headers.authorization);
+  res.status(403).json({ error: 'No Token/Authorization' });
 }
-
 });
 
 
